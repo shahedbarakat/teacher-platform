@@ -1,92 +1,1632 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>استعادة كلمة المرور</title>
+  <title>منصة المدرّس | Teacher's Platform</title>
+
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f6f9;
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
+    * {
       box-sizing: border-box;
     }
 
-    .card {
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f7ff;
+      color: #172554;
+    }
+
+    nav {
       background: white;
-      max-width: 420px;
-      width: 100%;
-      padding: 30px;
-      border-radius: 14px;
-      text-align: center;
-      box-shadow: 0 4px 18px #00000012;
+      padding: 20px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 2px 12px #dbeafe;
     }
 
-    h1 {
-      color: #243b53;
-      font-size: 24px;
-    }
-
-    p {
-      color: #52606d;
-      line-height: 1.8;
-    }
-
-    a {
-      display: none;
-      margin-top: 20px;
-      padding: 13px 20px;
-      background: #2563eb;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
+    .logo {
+      font-size: 21px;
       font-weight: bold;
     }
 
-    #error {
-      color: #b91c1c;
+    button {
+      cursor: pointer;
+      border: 0;
+      border-radius: 9px;
+      padding: 12px 18px;
+      font-size: 15px;
     }
+
+    .language {
+      background: #e0eaff;
+      color: #1d4ed8;
+    }
+
+    .hero {
+      padding: 55px 7% 35px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(30px, 5vw, 46px);
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      color: #64748b;
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    .section {
+      padding: 20px 7% 60px;
+    }
+
+    .classes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 20px;
+    }
+
+    .class-card {
+      background: white;
+      padding: 25px;
+      border-radius: 18px;
+      box-shadow: 0 5px 20px #dbeafe;
+      cursor: pointer;
+      transition: 0.2s;
+      border: 2px solid transparent;
+    }
+
+    .class-card:hover {
+      transform: translateY(-4px);
+      border-color: #60a5fa;
+    }
+
+    .class-icon {
+      font-size: 35px;
+    }
+
+    .class-card h3 {
+      margin-bottom: 8px;
+    }
+
+    .class-card p {
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    .primary {
+      background: #1d4ed8;
+      color: white;
+    }
+
+    .back {
+      background: #e0eaff;
+      color: #1d4ed8;
+      margin-bottom: 20px;
+    }
+
+    .lesson {
+      background: white;
+      padding: 20px;
+      margin: 12px 0;
+      border-radius: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .lesson p {
+      color: #64748b;
+      margin-bottom: 0;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #64748b;
+      background: white;
+    }
+
+    [dir="ltr"] .lesson {
+      text-align: left;
+    }
+    
+/* ===== Mr. Esam Barakat — New Homepage Design ===== */
+
+:root {
+  --green-dark: #173f32;
+  --green: #245c46;
+  --green-light: #e4eee5;
+  --cream: #f8f5e9;
+  --cream-dark: #eee8d8;
+  --gold: #c7a76a;
+  --text: #263b31;
+  --muted: #718075;
+  --white: #ffffff;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--cream);
+  background-image:
+    radial-gradient(
+      circle at 1px 1px,
+      rgba(36, 92, 70, 0.07) 1px,
+      transparent 0
+    );
+  background-size: 24px 24px;
+  color: var(--text);
+  line-height: 1.7;
+}
+
+/* Navigation */
+nav {
+  background: rgba(248, 245, 233, 0.96);
+  padding: 18px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 1px solid var(--cream-dark);
+  box-shadow: 0 4px 20px rgba(23, 63, 50, 0.05);
+}
+
+.logo {
+  font-size: clamp(17px, 2.5vw, 23px);
+  font-weight: bold;
+  color: var(--green-dark);
+  letter-spacing: 0.2px;
+}
+
+/* Language switch */
+.language {
+  background: var(--green-light);
+  color: var(--green-dark);
+  border: 1px solid rgba(36, 92, 70, 0.15);
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-weight: bold;
+  transition: 0.2s ease;
+}
+
+.language:hover {
+  background: var(--green-dark);
+  color: var(--white);
+}
+
+/* Homepage hero */
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  margin: 30px 7% 24px;
+  padding: clamp(45px, 8vw, 85px) 24px;
+  text-align: center;
+  color: var(--white);
+  background: linear-gradient(
+    135deg,
+    var(--green-dark),
+    var(--green)
+  );
+  border: 1px solid rgba(199, 167, 106, 0.45);
+  border-radius: 28px;
+  box-shadow: 0 18px 45px rgba(23, 63, 50, 0.15);
+}
+
+/* Subtle Islamic geometric-inspired pattern */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.14;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent 0 25px,
+      var(--gold) 25px 26px,
+      transparent 26px 50px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0 25px,
+      var(--gold) 25px 26px,
+      transparent 26px 50px
+    );
+  mask-image: linear-gradient(
+    to bottom,
+    black,
+    transparent 95%
+  );
+}
+
+.hero h1 {
+  position: relative;
+  margin: 0 auto 18px;
+  max-width: 850px;
+  color: var(--white);
+  font-size: clamp(30px, 5vw, 48px);
+  line-height: 1.5;
+  letter-spacing: -0.5px;
+}
+
+.hero p {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto;
+  color: #e8eee6;
+  font-size: clamp(16px, 2vw, 19px);
+  line-height: 2;
+}
+
+/* Student login card */
+#loginSection {
+  max-width: 650px;
+  margin: 0 auto 55px;
+  padding: clamp(24px, 5vw, 42px);
+  background: var(--white);
+  border: 1px solid #e6e0d0;
+  border-radius: 24px;
+  box-shadow: 0 14px 38px rgba(23, 63, 50, 0.08);
+}
+
+#loginSection h2 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  color: var(--green-dark);
+  font-size: clamp(22px, 3vw, 28px);
+}
+
+#loginSection > p {
+  color: var(--muted);
+  margin-bottom: 22px;
+}
+
+/* Inputs */
+input,
+textarea,
+select {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: 12px 0;
+  padding: 14px 16px;
+  font: inherit;
+  color: var(--text);
+  background: #fcfbf7;
+  border: 1px solid #dddccf;
+  border-radius: 12px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(36, 92, 70, 0.12);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #92998f;
+}
+
+/* Buttons */
+button {
+  cursor: pointer;
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 20px;
+  font: inherit;
+  font-weight: 600;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+.primary {
+  background: var(--green-dark);
+  color: var(--white);
+  box-shadow: 0 5px 14px rgba(23, 63, 50, 0.12);
+}
+
+.primary:hover {
+  background: var(--green);
+  box-shadow: 0 8px 18px rgba(23, 63, 50, 0.18);
+}
+
+#loginSection button {
+  margin: 8px 6px 0 0;
+}
+
+.back {
+  background: var(--green-light);
+  color: var(--green-dark);
+}
+
+/* Other website sections */
+.section {
+  padding: 24px 7% 55px;
+}
+
+.section h2 {
+  color: var(--green-dark);
+}
+
+.classes {
+  gap: 20px;
+}
+
+.class-card {
+  background: var(--white);
+  border: 1px solid #e6e0d0;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(23, 63, 50, 0.06);
+}
+
+.class-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 12px 28px rgba(23, 63, 50, 0.1);
+}
+
+.class-card h3 {
+  color: var(--green-dark);
+}
+
+.class-card p,
+.lesson p {
+  color: var(--muted);
+}
+
+.lesson {
+  background: var(--white);
+  border: 1px solid #e6e0d0;
+  border-radius: 16px;
+  box-shadow: 0 5px 18px rgba(23, 63, 50, 0.05);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 28px 7%;
+  color: #e8eee6;
+  background: var(--green-dark);
+  border-top: 3px solid var(--gold);
+}
+
+/* Mobile layout */
+@media (max-width: 600px) {
+  nav {
+    padding: 15px 5%;
+  }
+
+  .hero {
+    margin: 18px 5% 20px;
+    padding: 42px 20px;
+    border-radius: 22px;
+  }
+
+  #loginSection {
+    margin: 0 5% 40px;
+    padding: 24px 20px;
+  }
+
+  #loginSection button {
+    margin: 6px 0;
+  }
+
+  .section {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+}
+
   </style>
 </head>
-<body>
-  <div class="card">
-    <h1>استعادة كلمة المرور</h1>
-    <p>
-      اضغط على الزر أدناه لمتابعة استعادة كلمة المرور.
-    </p>
 
-    <a id="continueButton">متابعة استعادة كلمة المرور</a>
-    <p id="error"></p>
-  </div>
+<body>
+  <nav>
+    <div class="logo" id="logo"> أستاذ عصام بركات</div>
+
+    <button
+      class="language"
+      id="languageButton"
+      onclick="changeLanguage()"
+    >
+      English
+    </button>
+  </nav>
+
+  <main>
+    <section class="hero" id="home">
+      <h1 id="welcome">أهلا بكم في منصة الأستاذ عصام بركات</h1>
+
+      <p id="subtitle">
+        التربية الإسلامية | Islamic Education.
+        اختَر صفّك للوصول إلى الدروس والسلايدات والفيديوهات التعليمية.
+      </p>
+    </section>
+
+    <section class="section" id="loginSection">
+      <h2>تسجيل دخول الطالب / Student Login</h2>
+      
+
+      <div id="gradeCodeField" class="hidden">
+      <p>أدخل رمز الصف الخاص بك / Enter your class code</p>
+    <input
+    id="gradeCodeInput"
+    type="password"
+    placeholder="رمز الصف / Class code"
+     >
+      </div>
+
+      <input
+        id="studentEmail"
+        type="email"
+        placeholder="البريد الإلكتروني / Email"
+      >
+
+      <input
+        id="studentPassword"
+        type="password"
+        placeholder="كلمة المرور / Password"
+      >
+
+      <button class="primary" id="studentLoginButton" onclick="loginStudent()">دخول</button>
+
+      <button class="primary" id="registerButton" onclick="showRegistration()">تسجيل</button>
+
+      <p id="loginMessage"></p>
+    </section>
+
+    <section class="section hidden" id="classSection">
+      <h2 id="classesTitle">الصفوف الدراسية</h2>
+      <div class="classes" id="classes"></div>
+    </section>
+
+    <section class="section hidden" id="lessonsSection">
+      <button class="primary" onclick="logoutStudent()">
+        Logout / تسجيل الخروج
+      </button>
+
+      <h2 id="selectedClass"></h2>
+      <p id="lessonsSubtitle"></p>
+      <div id="lessons"></div>
+    </section>
+
+    <section class="section hidden" id="lessonSection">
+      <button
+        class="back"
+        id="lessonsBack"
+        onclick="showLessons()"
+      >
+        ← العودة إلى الدروس
+      </button>
+
+      <h2 id="selectedLesson"></h2>
+      <p id="lessonDescription"></p>
+
+      <div class="lesson">
+        <div>
+          <strong id="slidesTitle">📄 السلايدات والملفات</strong>
+          <p id="slidesInfo">ستُضاف الملفات هنا.</p>
+        </div>
+      </div>
+
+      <div class="lesson">
+        <div>
+          <strong id="videosTitle">🎥 الفيديوهات التعليمية</strong>
+          <p id="videosInfo">ستُضاف الفيديوهات هنا.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer">
+    منصة تعليمية تساعدك على التعلّم خطوة بخطوة
+  </footer>
 
   <script>
-    const params = new URLSearchParams(window.location.search);
-    const confirmationUrl = params.get("confirmation_url");
-    const button = document.getElementById("continueButton");
-    const error = document.getElementById("error");
+    let language = "ar";
+    let currentClass = 0;
 
-    if (confirmationUrl) {
-      try {
-        const targetUrl = new URL(confirmationUrl);
-
-        if (targetUrl.protocol === "https:" || targetUrl.protocol === "http:") {
-          button.href = targetUrl.href;
-          button.style.display = "inline-block";
-        } else {
-          error.textContent = "الرابط غير صالح. اطلب رابط استعادة جديدًا.";
-        }
-      } catch {
-        error.textContent = "الرابط غير صالح. اطلب رابط استعادة جديدًا.";
+    const schoolClasses = [
+      {
+        ar: "الصف السابع",
+        en: "Grade 7",
+        icon: "📗",
+        lessons: [
+          { ar: "الدرس الأول", en: "Lesson 1" },
+          { ar: "الدرس الثاني", en: "Lesson 2" },
+          { ar: "الدرس الثالث", en: "Lesson 3" }
+        ]
+      },
+      {
+        ar: "الصف الثامن",
+        en: "Grade 8",
+        icon: "📗",
+        lessons: [
+          { ar: "الدرس الأول", en: "Lesson 1" },
+          { ar: "الدرس الثاني", en: "Lesson 2" }
+        ]
+      },
+      {
+        ar: "الصف التاسع",
+        en: "Grade 9",
+        icon: "📗",
+        lessons: [
+          { ar: "الدرس الأول", en: "Lesson 1" },
+          { ar: "الدرس الثاني", en: "Lesson 2" },
+          { ar: "الدرس الثالث", en: "Lesson 3" }
+        ]
+      },
+      {
+        ar: "الصف العاشر",
+        en: "Grade 10",
+        icon: "📗",
+        lessons: [
+          { ar: "الدرس الأول", en: "Lesson 1" },
+          { ar: "الدرس الثاني", en: "Lesson 2" },
+          { ar: "الدرس الثالث", en: "Lesson 3" }
+        ]
+      },
+      {
+        ar: "الصف الحادي عشر",
+        en: "Grade 11",
+        icon: "📗",
+        lessons: [
+          { ar: "الدرس الأول", en: "Lesson 1" },
+          { ar: "الدرس الثاني", en: "Lesson 2" },
+          { ar: "الدرس الثالث", en: "Lesson 3" }
+        ]
+      },
+      {
+        ar: "الصف الثاني عشر",
+        en: "Grade 12",
+        icon: "📗",
+        lessons: [
+          { ar: "الدرس الأول", en: "Lesson 1" },
+          { ar: "الدرس الثاني", en: "Lesson 2" },
+          { ar: "الدرس الثالث", en: "Lesson 3" }
+        ]
+      },
+      {
+        ar: "الصف الثالث عشر",
+        en: "Grade 13",
+        icon: "📗",
+        lessons: [
+          { ar: "الدرس الأول", en: "Lesson 1" },
+          { ar: "الدرس الثاني", en: "Lesson 2" },
+          { ar: "الدرس الثالث", en: "Lesson 3" }
+        ]
       }
-    } else {
-      error.textContent = "لم يتم العثور على رابط الاستعادة. افتح الرابط من البريد الإلكتروني مرة أخرى.";
+    ];
+
+    function changeLanguage() {
+      language = language === "ar" ? "en" : "ar";
+
+      document.documentElement.lang = language;
+      document.documentElement.dir =
+        language === "ar" ? "rtl" : "ltr";
+
+      document.getElementById("languageButton").textContent =
+        language === "ar" ? "English" : "العربية";
+
+      document.getElementById("logo").textContent =
+        language === "ar"
+          ? " أستاذ عصام بركات" 
+          : " Mr. Esam Barakat";
+
+      document.getElementById("welcome").textContent =
+        language === "ar"
+          ? "أهلا بكم في منصة الأستاذ عصام بركات"
+          : "All Your Lessons in One Place";
+
+      document.getElementById("subtitle").textContent =
+        language === "ar"
+          ? "اختَر صفّك للوصول إلى الدروس والسلايدات والفيديوهات التعليمية."
+          : "Choose your class to access lessons, slides and educational videos.";
+
+      document.getElementById("classesTitle").textContent =
+        language === "ar" ? "الصفوف الدراسية" : "School Classes";
+
+      document.getElementById("lessonsBack").textContent =
+        language === "ar"
+          ? "→ العودة إلى الدروس"
+          : "← Back to Lessons";
+
+      document.getElementById("slidesTitle").textContent =
+        language === "ar"
+          ? "📄 السلايدات والملفات"
+          : "📄 Slides and Files";
+
+      document.getElementById("slidesInfo").textContent =
+        language === "ar"
+          ? "ستُضاف الملفات هنا."
+          : "Files will appear here.";
+
+      document.getElementById("videosTitle").textContent =
+        language === "ar"
+          ? "🎥 الفيديوهات التعليمية"
+          : "🎥 Educational Videos";
+
+      document.getElementById("videosInfo").textContent =
+        language === "ar"
+          ? "ستُضاف الفيديوهات هنا."
+          : "Videos will appear here.";
+
+      document.getElementById("footer").textContent =
+        language === "ar"
+          ? "منصة تعليمية تساعدك على التعلّم خطوة بخطوة"
+          : "An educational platform to help you learn step by step";
+
+      document.getElementById("teacherLoginTitle").textContent =
+        language === "ar" ? "دخول الأستاذ" : "Teacher Login";
+
+      document.getElementById("teacherEmail").placeholder =
+       language === "ar" ? "البريد الإلكتروني" : "Email";
+
+      document.getElementById("teacherPassword").placeholder =
+       language === "ar" ? "كلمة المرور" : "Password";
+
+      document.getElementById("teacherLoginButton").textContent =
+       language === "ar" ? "دخول" : "Login";    
+
+      document.getElementById("studentLoginButton").textContent =
+         language === "ar" ? "دخول" : "Login";
+
+      document.getElementById("registerButton").textContent =
+        language === "ar" ? "تسجيل" : "Register";
+
+      renderClasses();
+
+      if (
+        !document.getElementById("lessonsSection")
+          .classList.contains("hidden")
+      ) {
+        renderLessons();
+      }
+
+      if (
+        !document.getElementById("lessonSection")
+          .classList.contains("hidden")
+      ) {
+        renderLessonDetails();
+      }
     }
+
+    function renderClasses() {
+      const container = document.getElementById("classes");
+      container.innerHTML = "";
+
+      schoolClasses.forEach((schoolClass, index) => {
+        const card = document.createElement("div");
+        card.className = "class-card";
+
+        card.innerHTML = `
+          <div class="class-icon">${schoolClass.icon}</div>
+          <h3>${schoolClass[language]}</h3>
+          <p>
+            ${schoolClass.lessons.length}
+            ${language === "ar" ? "دروس" : "lessons"}
+          </p>
+          <button class="primary">
+            ${language === "ar" ? "عرض الدروس ←" : "View Lessons →"}
+          </button>
+        `;
+
+        card.addEventListener("click", () => showLessons(index));
+        container.appendChild(card);
+      });
+    }
+
+    async function showLessons(index = currentClass) {
+      const allowedGradeId = Number(
+        sessionStorage.getItem("studentGradeId")
+      );
+
+      if (
+        !Number.isInteger(allowedGradeId) ||
+        !schoolClasses[index] ||
+        index !== allowedGradeId - 1
+      ) {
+        return;
+      }
+
+      currentClass = index;
+
+      document.getElementById("classSection")
+        .classList.add("hidden");
+
+      document.getElementById("lessonSection")
+        .classList.add("hidden");
+
+      document.getElementById("lessonsSection")
+        .classList.remove("hidden");
+
+      await renderLessons();
+      window.scrollTo(0, 0);
+    }
+
+    let lessonsRenderVersion = 0;
+
+    async function renderLessons() {
+      const renderVersion = ++lessonsRenderVersion;
+      const schoolClass = schoolClasses[currentClass];
+
+      document.getElementById("selectedClass").textContent =
+        schoolClass[language];
+
+      document.getElementById("lessonsSubtitle").textContent =
+        language === "ar"
+          ? "اختَر درسًا لعرض مواده التعليمية."
+          : "Choose a lesson to view its learning materials.";
+
+      const container = document.getElementById("lessons");
+
+      container.textContent =
+        language === "ar"
+          ? "جارٍ تحميل الدروس..."
+          : "Loading lessons...";
+
+      let data;
+      let error;
+
+      try {
+        ({ data, error } = await window.supabaseClient.rpc(
+          "get_my_grade_lessons"
+        ));
+      } catch (requestError) {
+        error = requestError;
+      }
+
+      if (renderVersion !== lessonsRenderVersion) return;
+
+      data = Array.isArray(data) ? data : [];
+
+      if (error) {
+        container.textContent =
+          language === "ar"
+            ? "تعذّر تحميل الدروس. تحقّق من إعدادات الوصول."
+            : "Could not load lessons. Please check access settings.";
+
+        console.error(error);
+        return;
+      }
+
+      container.replaceChildren();
+
+      data.forEach((lesson, index) => {
+        const item = document.createElement("div");
+        item.className = "lesson";
+
+        const title = document.createElement("strong");
+        title.textContent = `${index + 1}. ${lesson.title}`;
+
+        const description = document.createElement("p");
+        description.textContent =
+          lesson.description ||
+          (language === "ar"
+            ? "مواد الدرس التعليمية"
+            : "Lesson materials");
+
+        const button = document.createElement("button");
+        button.className = "primary";
+        button.textContent =
+          language === "ar" ? "افتح الدرس" : "Open Lesson";
+
+        button.addEventListener("click", () => {
+          window.currentLessonData = lesson;
+          showLesson(index);
+        });
+
+        item.append(title, description, button);
+        container.appendChild(item);
+      });
+
+      if (data.length === 0) {
+        container.textContent =
+          language === "ar"
+            ? "لا توجد دروس لهذا الصف بعد."
+            : "No lessons for this grade yet.";
+      }
+    }
+
+    let currentLesson = 0;
+
+    function showLesson(index) {
+      currentLesson = index;
+
+      document.getElementById("lessonsSection")
+        .classList.add("hidden");
+
+      document.getElementById("lessonSection")
+        .classList.remove("hidden");
+
+      renderLessonDetails();
+      window.scrollTo(0, 0);
+    }
+
+    let lessonRenderVersion = 0;
+  
+async function renderLessonDetails() {
+  const renderVersion = ++lessonRenderVersion;
+  const lesson = window.currentLessonData;
+
+  if (!lesson) return;
+
+  const isArabic = language === "ar";
+
+  document.getElementById("selectedLesson").textContent =
+    lesson.title || "";
+
+  document.getElementById("lessonDescription").textContent =
+    lesson.description || "";
+
+  const slidesInfo = document.getElementById("slidesInfo");
+  const videosInfo = document.getElementById("videosInfo");
+
+  slidesInfo.textContent =
+    lesson.content ||
+    (isArabic ? "محتوى الدرس التعليمي" : "Lesson content");
+
+  videosInfo.replaceChildren();
+
+  const path = String(lesson.url || "").trim();
+
+  if (!path) {
+    videosInfo.textContent = isArabic
+      ? "لا يوجد فيديو مرفق."
+      : "No video attached.";
+    return;
+  }
+
+  // Detect videos by file extension or common video websites.
+  const isVideo =
+    /\.(mp4|webm|mov|m4v)(?:[?#].*)?$/i.test(path) ||
+    /youtube\.com|youtu\.be|vimeo\.com/i.test(path);
+
+  // Videos go under Educational Videos.
+  // PDFs, PowerPoints and other files go under Slides and Files.
+  const target = isVideo ? videosInfo : slidesInfo;
+
+  const status = document.createElement("p");
+  status.textContent = isArabic
+    ? "جارٍ تجهيز الملف..."
+    : "Preparing file...";
+
+  target.appendChild(status);
+
+  try {
+    let href;
+
+    if (/^https?:\/\//i.test(path)) {
+      href = new URL(path).href;
+    } else {
+      if (
+        /^[a-z][a-z0-9+.-]*:/i.test(path) ||
+        path.startsWith("//")
+      ) {
+        throw new Error("Invalid file path.");
+      }
+
+      const { data, error } =
+        await window.supabaseClient.storage
+          .from("lesson-files")
+          .createSignedUrl(path, 3600);
+
+      if (error) throw error;
+
+      if (!data?.signedUrl) {
+        throw new Error("No file link returned.");
+      }
+
+      href = data.signedUrl;
+    }
+
+    if (renderVersion !== lessonRenderVersion) return;
+
+    const link = document.createElement("a");
+    link.href = href;
+    link.textContent = isVideo
+      ? (isArabic ? "▶ فتح الفيديو" : "▶ Open Video")
+      : (isArabic ? "📄 فتح السلايدات أو الملف" : "📄 Open Slides or File");
+
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+
+    status.remove();
+    target.appendChild(document.createElement("br"));
+    target.appendChild(link);
+
+  } catch (error) {
+    if (renderVersion !== lessonRenderVersion) return;
+
+    status.textContent =
+      (isArabic ? "تعذّر فتح الملف: " : "Could not open file: ") +
+      error.message;
+
+    console.error("File link error:", error);
+  }
+}
+
+
+    function showClasses() {
+      document.getElementById("lessonsSection")
+        .classList.add("hidden");
+
+      document.getElementById("lessonSection")
+        .classList.add("hidden");
+
+      document.getElementById("classSection")
+        .classList.remove("hidden");
+
+      window.scrollTo(0, 0);
+    }
+
+    async function logoutStudent() {
+      const { error } =
+        await window.supabaseClient.auth.signOut();
+
+      if (error) {
+        alert(error.message);
+        return;
+      }
+
+      ++lessonRenderVersion;
+      ++lessonsRenderVersion;
+
+      window.currentLessonData = null;
+
+      sessionStorage.removeItem("gradeAccessCode");
+      sessionStorage.removeItem("studentGradeId");
+
+      document.getElementById("loginSection")
+        .classList.remove("hidden");
+
+      document.getElementById("teacherLoginSection")
+        .classList.remove("hidden");
+
+      for (const id of [
+        "classSection",
+        "lessonsSection",
+        "lessonSection",
+        "teacherDashboard"
+      ]) {
+        document.getElementById(id).classList.add("hidden");
+      }
+
+      document.getElementById("lessons").replaceChildren();
+      document.getElementById("videosInfo").replaceChildren();
+
+      for (const id of [
+        "gradeCodeInput",
+        "studentEmail",
+        "studentPassword"
+      ]) {
+        document.getElementById(id).value = "";
+      }
+
+      document.getElementById("loginMessage").textContent = "";
+    }
+    function showRegistration() {
+  document.getElementById("gradeCodeField").classList.remove("hidden");
+
+  document.getElementById("registerButton").setAttribute(
+    "onclick",
+    "registerStudent()"
+  );
+}
+
+    async function registerStudent() {
+      const code =
+        document.getElementById("gradeCodeInput").value.trim();
+
+      const email =
+        document.getElementById("studentEmail").value.trim();
+
+      const password =
+        document.getElementById("studentPassword").value;
+
+      const message = document.getElementById("loginMessage");
+
+      if (!code || !email || !password) {
+        message.textContent =
+          "يرجى تعبئة جميع الحقول / Please fill in all fields.";
+        return;
+      }
+
+      const { data, error } =
+        await window.supabaseClient.auth.signUp({
+          email,
+          password,
+          options: {
+            data: {
+              grade_code: code
+            }
+          }
+        });
+
+      if (error) {
+        message.textContent = error.message;
+        return;
+      }
+
+      if (!data.session) {
+        message.textContent =
+          "تحقق من بريدك الإلكتروني لتأكيد الحساب / Check your email to confirm your account.";
+        return;
+      }
+
+      message.textContent =
+        "تم تسجيل الحساب بنجاح / Account registered successfully.";
+
+      const { data: gradeId, error: gradeError } =
+        await window.supabaseClient.rpc("get_my_student_grade");
+
+      if (
+        gradeError ||
+        !Number.isInteger(Number(gradeId)) ||
+        !schoolClasses[Number(gradeId) - 1]
+      ) {
+        message.textContent =
+          "تعذّر تحديد صفك. تأكد من تسجيل حسابك برمز الصف الصحيح.";
+        return;
+      }
+
+      sessionStorage.setItem("studentGradeId", gradeId);
+
+      document.getElementById("loginSection")
+        .classList.add("hidden");
+
+      document.getElementById("classSection")
+        .classList.add("hidden");
+
+      document.getElementById("teacherLoginSection")
+        .classList.add("hidden");
+
+      await showLessons(Number(gradeId) - 1);
+    }
+
+    async function loginStudent() {
+      const email =
+        document.getElementById("studentEmail").value.trim();
+
+      const password =
+        document.getElementById("studentPassword").value;
+
+      const message = document.getElementById("loginMessage");
+
+      if (!email || !password) {
+        message.textContent =
+          "أدخل الإيميل وكلمة المرور / Enter email and password.";
+        return;
+      }
+
+      const { error } =
+        await window.supabaseClient.auth.signInWithPassword({
+          email,
+          password
+        });
+
+      if (error) {
+        message.textContent =
+          "فشل تسجيل الدخول. تأكد من الإيميل وكلمة المرور.";
+        return;
+      }
+
+      message.textContent =
+        "تم تسجيل الدخول بنجاح / Login successful.";
+
+      const { data: gradeId, error: gradeError } =
+        await window.supabaseClient.rpc("get_my_student_grade");
+
+      if (
+        gradeError ||
+        !Number.isInteger(Number(gradeId)) ||
+        !schoolClasses[Number(gradeId) - 1]
+      ) {
+        message.textContent =
+          "تعذّر تحديد صفك. تأكد من ربط حسابك بالصف.";
+        return;
+      }
+
+      sessionStorage.setItem("studentGradeId", gradeId);
+
+      document.getElementById("loginSection")
+        .classList.add("hidden");
+
+      document.getElementById("teacherLoginSection")
+        .classList.add("hidden");
+
+      await showLessons(Number(gradeId) - 1);
+    }
+
+    window.addEventListener("unhandledrejection", (event) => {
+      console.error("Request failed:", event.reason);
+
+      const target = [
+        "lessonMessage",
+        "teacherMessage",
+        "loginMessage"
+      ].find((id) => {
+        const element = document.getElementById(id);
+        return element && !element.closest(".hidden");
+      });
+
+      if (target) {
+        document.getElementById(target).textContent =
+          language === "ar"
+            ? "تعذّر إكمال الطلب. تحقق من الاتصال وحاول مجددًا."
+            : "Request failed. Check your connection and try again.";
+      }
+    });
+
+    renderClasses();
   </script>
+
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="supabase.js"></script>
+
+  
+<section class="section" id="teacherLoginSection">
+  <h2 id="teacherLoginTitle">دخول الأستاذ</h2>
+
+  <input
+    id="teacherEmail"
+    type="email"
+    placeholder="البريد الإلكتروني"
+  >
+
+  <input
+    id="teacherPassword"
+    type="password"
+    placeholder="كلمة المرور"
+  >
+
+  <button id="teacherLoginButton" onclick="loginTeacher()">دخول</button>
+  <p id="teacherMessage"></p>
+</section>
+
+
+  <section class="section hidden" id="teacherDashboard">
+    <h2>لوحة تحكم الأستاذ</h2>
+
+    <button onclick="showAddLesson()">إضافة درس</button>
+    <button onclick="logoutTeacher()">تسجيل الخروج</button>
+
+    <div id="addLessonForm" class="hidden">
+      <input
+        id="lessonTitle"
+        placeholder="عنوان الدرس"
+      >
+
+      <input
+        id="lessonGrade"
+        type="number"
+        min="7"
+        max="13"
+        placeholder="الصف من 7 إلى 13"
+      >
+
+      <textarea
+        id="lessonDescriptionInput"
+        placeholder="وصف الدرس"
+      ></textarea>
+
+      <textarea
+        id="lessonContent"
+        placeholder="محتوى الدرس"
+      ></textarea>
+
+      <input
+        id="lessonUrl"
+        type="url"
+        placeholder="رابط الفيديو أو الملف"
+      >
+
+      <label for="lessonFile">
+        رفع ملف الدرس (PDF أو PowerPoint أو فيديو MP4)
+      </label>
+
+      <input
+        id="lessonFile"
+        type="file"
+        accept=".pdf,.ppt,.pptx,video/mp4"
+      >
+
+      <button onclick="saveLesson()">حفظ الدرس</button>
+      <p id="lessonMessage"></p>
+    </div>
+
+    <div id="teacherLessons"></div>
+
+    <script>
+      async function loginTeacher() {
+        const message =
+          document.getElementById("teacherMessage");
+
+        const email =
+          document.getElementById("teacherEmail").value.trim();
+
+        const password =
+          document.getElementById("teacherPassword").value;
+
+        message.textContent = "جارٍ تسجيل الدخول...";
+
+        const { error } =
+          await window.supabaseClient.auth.signInWithPassword({
+            email,
+            password
+          });
+
+        if (error) {
+          message.textContent =
+            "فشل تسجيل الدخول. تأكد من البريد وكلمة المرور. " +
+            error.message;
+          return;
+        }
+
+        const { data: userData, error: userError } =
+          await window.supabaseClient.auth.getUser();
+
+        if (userError || !userData?.user) {
+          message.textContent =
+            "تعذّر التحقق من الحساب. حاول تسجيل الدخول مجددًا.";
+          return;
+        }
+
+        const { data: teacher, error: teacherError } =
+          await window.supabaseClient
+            .from("teacher_profiles")
+            .select("user_id")
+            .eq("user_id", userData.user.id)
+            .maybeSingle();
+
+        if (teacherError || !teacher) {
+          await window.supabaseClient.auth.signOut();
+
+          message.textContent =
+            "هذا الحساب غير مسجل كحساب أستاذ.";
+          return;
+        }
+
+        document.getElementById("loginSection")
+          .classList.add("hidden");
+
+        document.getElementById("teacherLoginSection")
+          .classList.add("hidden");
+
+        ++lessonRenderVersion;
+        ++lessonsRenderVersion;
+
+        window.currentLessonData = null;
+        sessionStorage.removeItem("studentGradeId");
+
+        for (const id of [
+          "classSection",
+          "lessonsSection",
+          "lessonSection"
+        ]) {
+          document.getElementById(id).classList.add("hidden");
+        }
+
+        document.getElementById("teacherDashboard")
+          .classList.remove("hidden");
+
+        loadTeacherLessons();
+      }
+
+      async function handlePasswordRecovery() {
+        const message =
+          document.getElementById("teacherMessage");
+
+        const hash = window.location.hash;
+
+        if (hash.includes("error_code=otp_expired")) {
+          if (message) {
+            message.textContent =
+              "رابط استعادة كلمة المرور انتهت صلاحيته. اطلب رابطًا جديدًا.";
+          }
+          return;
+        }
+
+        const isRecovery = hash.includes("type=recovery");
+
+        if (!isRecovery) return;
+
+        const { data, error } =
+          await window.supabaseClient.auth.getSession();
+
+        if (error || !data.session) {
+          if (message) {
+            message.textContent =
+              "تعذر التحقق من رابط استعادة كلمة المرور. اطلب رابطًا جديدًا.";
+          }
+          return;
+        }
+
+        const newPassword = prompt("أدخل كلمة المرور الجديدة:");
+
+        if (!newPassword) return;
+
+        const { error: updateError } =
+          await window.supabaseClient.auth.updateUser({
+            password: newPassword
+          });
+
+        if (updateError) {
+          alert("فشل تغيير كلمة المرور: " + updateError.message);
+          return;
+        }
+
+        alert("تم تغيير كلمة المرور بنجاح.");
+
+        await window.supabaseClient.auth.signOut();
+
+        window.location.hash = "";
+        window.location.reload();
+      }
+
+      function showAddLesson() {
+        document.getElementById("addLessonForm")
+          .classList.toggle("hidden");
+      }
+
+      async function saveLesson() {
+        const message =
+          document.getElementById("lessonMessage");
+
+        const title =
+          document.getElementById("lessonTitle").value.trim();
+
+        const file =
+          document.getElementById("lessonFile").files[0];
+
+        const grade = Number(
+          document.getElementById("lessonGrade").value
+        );
+
+        if (
+          !title ||
+          !Number.isInteger(grade) ||
+          grade < 7 ||
+          grade > 13
+        ) {
+          message.textContent =
+            "اكتب عنوان الدرس واختر صفًا من 7 إلى 13.";
+          return;
+        }
+
+        let lessonUrl = (
+          document.getElementById("lessonUrl")?.value ?? ""
+        ).trim();
+
+        if (file) {
+          const fileName =
+            `${Date.now()}-` +
+            file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+
+          const { data: uploadedFile, error: uploadError } =
+            await window.supabaseClient.storage
+              .from("lesson-files")
+              .upload(fileName, file);
+
+          if (uploadError) {
+            message.textContent =
+              "فشل رفع الملف: " + uploadError.message;
+            return;
+          }
+
+          lessonUrl = uploadedFile.path;
+        }
+
+        const { error } =
+          await window.supabaseClient.from("lessons").insert({
+            title,
+            class_id: grade - 6,
+            description: (
+              document.getElementById("lessonDescriptionInput")
+                ?.value ?? ""
+            ).trim(),
+            content: (
+              document.getElementById("lessonContent")
+                ?.value ?? ""
+            ).trim(),
+            url: lessonUrl || null
+          });
+
+        if (error) {
+          message.textContent =
+            "تعذّر حفظ الدرس: " + error.message;
+          return;
+        }
+
+        message.textContent = "تم حفظ الدرس بنجاح.";
+
+        document.getElementById("lessonTitle").value = "";
+        document.getElementById("lessonDescriptionInput").value = "";
+        document.getElementById("lessonContent").value = "";
+        document.getElementById("lessonUrl").value = "";
+        document.getElementById("lessonFile").value = "";
+
+        loadTeacherLessons();
+      }
+
+      
+async function loadTeacherLessons() {
+  const container = document.getElementById("teacherLessons");
+
+  container.textContent = "جارٍ تحميل الدروس...";
+
+  const { data, error } = await window.supabaseClient
+    .from("lessons")
+    .select("id, title, class_id, description, content, url")
+    .order("id", { ascending: false });
+
+  if (error) {
+    container.textContent =
+      "تعذّر تحميل الدروس: " + error.message;
+    return;
+  }
+
+  container.replaceChildren();
+
+  data.forEach((lesson) => {
+    const item = document.createElement("div");
+    item.className = "lesson";
+
+    const title = document.createElement("p");
+    title.textContent =
+      `الصف ${lesson.class_id + 6}: ${lesson.title}`;
+
+    const editButton = document.createElement("button");
+    editButton.textContent = "✏️ Edit";
+    editButton.style.margin = "5px";
+    editButton.onclick = () => editLesson(lesson);
+
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "🗑️ Delete";
+    deleteButton.style.margin = "5px";
+    deleteButton.onclick = () => deleteLesson(lesson.id);
+
+    item.append(title, editButton, deleteButton);
+    container.appendChild(item);
+  });
+}
+    
+async function editLesson(lesson) {
+  const newTitle = prompt("عنوان الدرس:", lesson.title ?? "");
+  if (newTitle === null) return;
+
+  if (!newTitle.trim()) {
+    alert("عنوان الدرس مطلوب.");
+    return;
+  }
+
+  const grade = prompt(
+    "الصف الدراسي (من 7 إلى 13):",
+    String(Number(lesson.class_id) + 6)
+  );
+  if (grade === null) return;
+
+  const gradeNumber = Number(grade);
+
+  if (
+    !Number.isInteger(gradeNumber) ||
+    gradeNumber < 7 ||
+    gradeNumber > 13
+  ) {
+    alert("أدخلي صفًا من 7 إلى 13.");
+    return;
+  }
+
+  const description = prompt(
+    "وصف الدرس:",
+    lesson.description ?? ""
+  );
+  if (description === null) return;
+
+  const content = prompt(
+    "محتوى الدرس:",
+    lesson.content ?? ""
+  );
+  if (content === null) return;
+
+  const url = prompt(
+    "رابط الفيديو أو الملف:",
+    lesson.url ?? ""
+  );
+  if (url === null) return;
+
+  const { error } = await window.supabaseClient
+    .from("lessons")
+    .update({
+      title: newTitle.trim(),
+      class_id: gradeNumber - 6,
+      description: description.trim(),
+      content: content.trim(),
+      url: url.trim() || null
+    })
+    .eq("id", lesson.id);
+
+  if (error) {
+    alert("فشل تعديل الدرس: " + error.message);
+    return;
+  }
+
+  alert("تم تعديل الدرس بنجاح!");
+  await loadTeacherLessons();
+}
+
+
+      async function deleteLesson(id) {
+        if (!confirm("متأكد إنك بدك تحذف هذا الدرس؟")) return;
+
+        const { error } = await window.supabaseClient
+          .from("lessons")
+          .delete()
+          .eq("id", id);
+
+        if (error) {
+          alert("تعذّر حذف الدرس: " + error.message);
+          return;
+        }
+
+        loadTeacherLessons();
+      }
+
+      async function logoutTeacher() {
+        const { error } =
+          await window.supabaseClient.auth.signOut();
+
+        if (error) {
+          alert(error.message);
+          return;
+        }
+
+        document.getElementById("loginSection")
+          .classList.remove("hidden");
+
+        document.getElementById("teacherLessons")
+          .replaceChildren();
+
+        document.getElementById("teacherDashboard")
+          .classList.add("hidden");
+
+        document.getElementById("teacherLoginSection")
+          .classList.remove("hidden");
+
+        document.getElementById("teacherPassword").value = "";
+      }
+    </script>
+
+    <script>
+      handlePasswordRecovery();
+    </script>
+  </section>
 </body>
-</html>
+</html> 
